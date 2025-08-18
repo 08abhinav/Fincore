@@ -25,7 +25,7 @@ export const EditAccountSheet = ()=>{
     const {isOpen, onClose, id} = useOpenAccount();
     const [ConfirmDialog, confirm] = useConfirm(
         "Are you sure?",
-        "You want to delete this transaction."
+        "You want to delete this account."
     )
 
     const accountQuery = useGetAccount(id);
