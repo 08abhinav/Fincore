@@ -12,7 +12,7 @@ const app = new Hono()
     .get("/",
         zValidator("query", z.object({
             from: z.string().optional(),
-            to: z.string(),
+            to: z.string().optional(),
             accountId: z.string().optional(),
         })), 
         clerkMiddleware(),
@@ -90,7 +90,6 @@ const app = new Hono()
                     eq(accounts.userId, auth.userId),
                 )
             );
-
             if(!data){
                 return c.json({error: "Not found"}, 404)
             }
@@ -101,7 +100,7 @@ const app = new Hono()
     .post("/", 
         clerkMiddleware(),
         zValidator("json", insertTransactionSchema.omit({
-            id: true,
+            id: true
         })),
         async (c) =>{
             const auth = getAuth(c);
