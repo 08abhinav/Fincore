@@ -120,3 +120,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff; /* Black track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333; /* Dark gray thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffffee; /* Lighter on hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #fff #ffffffee;
+}
