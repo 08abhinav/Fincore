@@ -12,7 +12,8 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.28.1",
+    "@clerk/clerk-react": "^5.45.0",
+    "@clerk/nextjs": "^6.31.6",
     "@hono/clerk-auth": "^3.0.3",
     "@hono/zod-validator": "^0.7.2",
     "@hookform/resolvers": "^5.2.1",
