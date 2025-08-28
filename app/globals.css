@@ -127,7 +127,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #fff; /* Black track */
+  background: #424040; /* Black track */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -136,11 +136,11 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffffffee; /* Lighter on hover */
+  background: #424040; /* Lighter on hover */
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #fff #ffffffee;
+  scrollbar-color: #eee #ffffffee;
 }
