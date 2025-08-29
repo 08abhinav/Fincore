@@ -5,10 +5,18 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function converAmountToMili(amount: number){
-  return Math.round(amount * 1000);
-}
+// export function converAmountToMili(amount: number){
+//   return Math.round(amount * 1000);
+// }
 
 export function converAmountFromMili(amount: number){
   return amount / 1000;
+}
+
+export function formatCurrency(amount: number){
+  return Intl.NumberFormat("en-IN", { 
+    maximumSignificantDigits: 2,
+    style: "currency",
+    currency: "INR"})
+    .format(amount)
 }
