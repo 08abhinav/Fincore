@@ -17,7 +17,6 @@ import Select from "@/components/Select"
 import { DatePicker } from "@/components/date-picker"
 import { Textarea } from "@/components/ui/textarea"
 import { AmountInput } from "@/components/amount-input"
-import { converAmountToMili } from "@/lib/utils"
 
 const formSchema = z.object({
     date: z.date(),
@@ -72,11 +71,11 @@ export const TransactionForm = ({
 
     const handleSubmit = (values: FormValues)=>{
         const amount = parseFloat(values.amount)
-        const amountInMili = converAmountToMili(amount);
+        // const amountInMili = converAmountToMili(amount);
         
         onSubmit({
             ...values,
-            amount: amountInMili
+            amount: amount
         })
     }
 
