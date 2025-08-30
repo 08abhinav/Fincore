@@ -44,7 +44,7 @@ const app = new Hono()
         const lastPeriodStart = subDays(startDate, periodLength);
         const lastPeriodEnd = subDays(endDate, periodLength);
 
-        async function fetchFinancialDatat(
+        async function fetchFinancialData(
             userId: string,
             startDate: Date,
             endDate: Date
@@ -67,12 +67,12 @@ const app = new Hono()
             )
         }
 
-        const [currentPeriod] = await fetchFinancialDatat(
+        const [currentPeriod] = await fetchFinancialData(
             auth.userId,
             startDate,
             endDate
         );
-        const [lastPeriod] = await fetchFinancialDatat(
+        const [lastPeriod] = await fetchFinancialData(
             auth.userId,
             lastPeriodStart,
             lastPeriodEnd
