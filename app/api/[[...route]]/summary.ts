@@ -51,26 +51,18 @@ const app = new Hono()
         ){
             return await db
             .select({
-                income: sql`SUM(CASE WHEN ${transactions.amount} >= 0 THEN ${transactions.amount}
-                ELSE 0 END)`.mapWith(Number),
-                expenses: sql`SUM(CASE WHEN ${transactions.amount} < 0 THEN ${transactions.amount}
-                ELSE 0 END)`.mapWith(Number),
-                remaining: sum(transactions.amount).mapWith(Number)
+                income: sql`COALESCE(SUM(CASE WHEN ${transactions.amount} >= 0 THEN ${transactions.amount} ELSE 0 END), 0)`.mapWith(Number),
+                expenses: sql`COALESCE(SUM(CASE WHEN ${transactions.amount} < 0 THEN ${transactions.amount} ELSE 0 END), 0)`.mapWith(Number),
+                remaining: sql`COALESCE(SUM(${transactions.amount}), 0)`.mapWith(Number)
             })
             .from(transactions)
-            .innerJoin(
-                accounts,
-                eq(
-                    transactions.accountId,
-                    accounts.id,
-                )
-            )
+            .innerJoin(accounts, eq(transactions.accountId, accounts.id))
             .where(
                 and(
-                    accountId ? eq(transactions.accountId, accountId): undefined,
-                    eq(accounts.userId, userId),
-                    gte(transactions.date, startDate),
-                    lte(transactions.date, endDate),
+                accountId ? eq(transactions.accountId, accountId) : undefined,
+                eq(accounts.userId, userId),
+                gte(transactions.date, startDate),
+                lte(transactions.date, endDate),
                 )
             )
         }
