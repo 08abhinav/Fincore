@@ -17,7 +17,6 @@ import { useGetTransactions } from "@/features/transactions/api/use-get-transact
 import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction"
 import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions"
 
-
 const TransactionsPage = () => {
   const newTransaction = useNewTransaction();
   const transactionsQuery = useGetTransactions();
@@ -43,7 +42,6 @@ const TransactionsPage = () => {
       </div>
     )
   }
-
   return (
     <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
       <Card className="border-none drop-shadow-sm">
@@ -51,13 +49,13 @@ const TransactionsPage = () => {
           <CardTitle className="text-xl font-semibold line-clamp-1">
             Transaction History
           </CardTitle>
-          <Button
-            onClick={newTransaction.onOpen}
-            size="sm"
-            className="flex items-center">
-            <Plus className="size-4 mr-2" />
-            Add new
-          </Button>
+            <Button
+              onClick={newTransaction.onOpen}
+              size="sm"
+              className="flex items-center">
+              <Plus className="size-4 mr-2" />
+              Add new
+            </Button>
         </CardHeader>
         <CardContent>
           <DataTable 
