@@ -54,12 +54,8 @@ export const DatePicker = ({ value, onChange, disabled }: Props) => {
           month={month}
           onMonthChange={setMonth}
           initialFocus
-          className="p-2"
+          className="p-12"
           classNames={{
-            // removed caption & nav by overriding
-            caption: "hidden",
-            nav: "hidden",
-            months: "flex flex-col space-y-4",
             table: "w-full border-collapse",
             head_row: "flex",
             head_cell: "text-gray-400 w-9 font-medium text-xs",
