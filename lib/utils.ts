@@ -1,5 +1,5 @@
 import { clsx, type ClassValue } from "clsx"
-import { eachDayOfInterval, isSameDay } from "date-fns";
+import { eachDayOfInterval, format as formatDate, isSameDay, subDays } from "date-fns";
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function converAmountFromMili(amount: number){
-  return amount / 1000;
+  return amount / 100;
 }
 
 export function formatCurrency(amount: number){
@@ -22,12 +22,11 @@ export function calcuatePercentageChange(
   current: number,
   previous: number
 ){
-  if(previous == 0){
-    return previous === current ? 0 : 100;
+  if(previous === 0){
+    return 0;
   }
-  return ((current - previous) / previous) * 100;
+  return ((current - previous) / Math.abs(previous )) * 100;
 }
-
 
 export function fillMissingDays(
   activeDays: {
@@ -60,4 +59,39 @@ export function fillMissingDays(
   })
 
   return transactionsByDate
+}
+
+type Period={
+  from: string | Date | undefined;
+  to: string | Date | undefined;
+}
+
+export function formatDateRange(period: Period) {
+  const defaultTo = new Date();
+  const defaultFrom = subDays(defaultTo, 30);
+
+  if (!period?.from) {
+    return `${formatDate(defaultFrom, "MMM dd")} - ${formatDate(defaultTo, "MMM dd, yyyy")}`;
+  }
+
+  if (period?.to) {
+    return `${formatDate(period.from, "MMM dd")} - ${formatDate(period.to, "MMM dd, yyyy")}`;
+  }
+
+  return formatDate(period.from, "MMM dd, yyyy");
+}
+
+export function formatPercentage(
+  value: number,
+  { addPrefix = false }: { addPrefix?: boolean } = {}
+) {
+  const res = new Intl.NumberFormat("en-IN", {
+    style: "percent",
+    maximumFractionDigits: 1
+  }).format(value / 10000);
+
+  if (addPrefix && value > 0) {
+    return `+${res}`;
+  }
+  return res;
 }
