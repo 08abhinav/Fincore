@@ -22,10 +22,10 @@ export function calcuatePercentageChange(
   current: number,
   previous: number
 ){
-  if(previous === 0){
+  if(previous === 0 ){
     return 0;
   }
-  return ((current - previous) / Math.abs(previous )) * 100;
+  return ((current - previous) / Math.abs(previous )) * 1000;
 }
 
 export function fillMissingDays(
