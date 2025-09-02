@@ -20,7 +20,6 @@ It provides **secure auth, income/expense tracking, rich data visualization, and
 
   * Radix UI components (tooltip, dialog, dropdown, popover)
   * TailwindCSS + class-variance-authority + tailwind-merge
-  * Dark mode with `next-themes`
 * 🧩 **State management with Zustand**
 * 🔄 **React Query** for caching & server sync
 * ✅ Form handling with `react-hook-form` + Zod validation
