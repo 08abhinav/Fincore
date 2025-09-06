@@ -70,8 +70,7 @@ export const TransactionForm = ({
     })
 
     const handleSubmit = (values: FormValues)=>{
-        const amount = parseFloat(values.amount)
-        // const amountInMili = converAmountToMili(amount);
+        const amount = parseInt(values.amount)
         
         onSubmit({
             ...values,
@@ -177,6 +176,7 @@ export const TransactionForm = ({
                             <FormControl>
                                <AmountInput
                                 {...field}
+                                value={field.value}
                                 disabled={disabled}
                                 placeholder="0.00"
                                />
